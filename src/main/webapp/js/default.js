@@ -22,7 +22,7 @@ var grid = Ext.create('Ext.grid.Panel', {
 		width: 120
 	}, {
 		dataIndex: 'name',
-		header: '名字aaaa',
+		header: '名字',
 		width: 120
 	}, {
 		dataIndex: 'age',
