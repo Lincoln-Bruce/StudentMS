@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+        xmlns:context="http://www.springframework.org/schema/context"  
+        xmlns:aop="http://www.springframework.org/schema/aop"   
+        xmlns:tx="http://www.springframework.org/schema/tx"   
+        xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans  
+        classpath:/org/springframework/beans/factory/xml/spring-beans-3.0.xsd  
+        http://www.springframework.org/schema/aop   
+        classpath:/org/springframework/aop/config/spring-aop-3.0.xsd  
+        http://www.springframework.org/schema/context  
+        classpath:/org/springframework/context/config/spring-context-3.0.xsd  
+        http://www.springframework.org/schema/tx   
+        classpath:/org/springframework/transaction/config/spring-tx-3.0.xsd">  
+  
+    <!-- IoC配置 -->  
+    <!-- 扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入 -->  
+    <context:component-scan base-package="com.travelMS.dao" />  
+    <context:component-scan base-package="com.travelMS.service" />  
+      
+    <!-- DAO配置 -->  
+    <context:property-placeholder location="classpath:jdbc.properties"/>  
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">  
+        <property name="driverClassName"     value="${driver}"/>  
+        <property name="url"         value="${url}"/>  
+        <property name="username"    value="${username}"/>  
+        <property name="password"    value="${password}"/>  
+    </bean>  
+      
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource" />  
+<!--         <property name="configLocation" value="classpath*:mybatis-config.xml"/>   -->
+        <property name="mapperLocations" value="classpath*:sqlMapper/**/*.xml"></property>  
+    </bean>  
+      
+    <!-- 配置事务管理器 -->  
+    <tx:annotation-driven/>  
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSource"/>  
+    </bean>  
+      
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="com.travelMS.dao"/>  
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>   
+        <!-- <property name="markerInterface" value="com.shr.dao.mapper.ITemplateMapper"/> -->  
+    </bean>  
+    
+    <bean id="studentServiceImp" class="com.travelMS.service.StudentServiceImp">  
+        <property name="dataSource" ref="dataSource" />  
+    </bean>
+</beans>

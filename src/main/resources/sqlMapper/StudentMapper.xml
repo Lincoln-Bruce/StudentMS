@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.travelMS.dao.StudentMapper">
+	
+	<resultMap type="com.travelMS.entity.Student" id="Student">
+		<result property="ID" column="id" javaType="BigDecimal" jdbcType="DECIMAL"></result>
+		<result property="name" column="name" javaType="String" jdbcType="VARCHAR"></result>
+		<result property="age" column="age" javaType="int" jdbcType="DECIMAL"></result>
+		<result property="FM" column="FM" javaType="String" jdbcType="CHAR"></result>
+	</resultMap>
+	
+	<select id="getRecords" parameterType="HashMap" resultMap="Student">
+		SELECT * FROM STUDENT
+	</select>
+	
+	<select id="getTotal" parameterType="HashMap" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM STUDENT
+	</select>
+	
+	<insert id="addStudentByMybatis">
+		INSERT INTO STUDENT(ID, NAME, AGE, FM)
+			VALUES 
+		(seq_studentId.Nextval, #{name, jdbcType=VARCHAR}, #{age, jdbcType=DECIMAL}, #{FM, jdbcType=CHAR})
+	</insert>
+</mapper>
