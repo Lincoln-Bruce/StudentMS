@@ -35,6 +35,10 @@ var grid = Ext.create('Ext.grid.Panel', {
 	}]
 });
 
+//var panel = Ext.create('js.example',{
+//	
+//});
+
 var examplePanel = Ext.create("Ext.panel.Panel", {
 	width: 1000,
 	height: 200,

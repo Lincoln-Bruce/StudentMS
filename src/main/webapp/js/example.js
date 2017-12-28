@@ -1,6 +1,9 @@
 Ext.define('js.example', {
 	extend: 'js.frameBase',
 	canExcel : false,
+	queryUrl: '/student/queryStudents.action',
+	autoSearch: true,
+	defaultKey: 'id',
 	
 	createGridColumns : function() {
 		return [{
@@ -16,7 +19,7 @@ Ext.define('js.example', {
 			header: '年龄',
 			width: 120
 		}, {
-			dataIndex: 'FM',
+			dataIndex: 'fm',
 			header: '性别',
 			width: 120
 		}];
