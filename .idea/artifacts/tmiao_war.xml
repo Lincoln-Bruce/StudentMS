@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="tmiao:war">
     <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="tmiao.war">
+    <root id="archive" name="travelMS.war">
       <element id="artifact" artifact-name="tmiao:war exploded" />
     </root>
   </artifact>

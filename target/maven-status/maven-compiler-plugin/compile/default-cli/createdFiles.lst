@@ -1,0 +1,5 @@
+com\travelMS\entity\Student.class
+com\travelMS\controller\StudentController.class
+com\travelMS\service\StudentService.class
+com\travelMS\service\StudentServiceImp.class
+com\travelMS\dao\StudentMapper.class
